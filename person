@@ -1,0 +1,117 @@
+
+class Personne {
+    var nom: String
+    var prenom: String
+    
+    init (nom: String, prenom: String) {
+        self.nom = nom
+        self.prenom = prenom
+    }
+    
+}
+
+class Employe: Personne {
+    var code: UInt
+    var departement: String
+    
+    override init (nom: String, prenom: String) {
+        self.code = 0
+        self.departement = ""
+        super.init(nom: nom, prenom: prenom)
+    }
+    
+    init(nom: String, prenom: String, code: UInt, departement: String) {
+        self.code = code
+        self.departement = departement
+        super.init(nom: nom, prenom: prenom)
+    }
+    
+}
+
+var monEmpl = Employe(nom: "Dupont", prenom: "Michel")
+var monEmpl2 = Employe(nom: "Rougemont", prenom: "Pierre")
+
+print ("\(monEmpl.nom) \(monEmpl.prenom) \(monEmpl.code) \(monEmpl.departement)")
+print ("\(monEmpl2.nom) \(monEmpl2.prenom) \(monEmpl2.code) \(monEmpl2.departement)")
+
+enum NiveauScolaire {
+    case un, deux, trois, quatre, cinq, six, sept, huit, neuf, dix, onze
+}
+
+class Eleve: Personne {
+    var ecole: String
+    var filiere: String?
+    var niveau: NiveauScolaire = NiveauScolaire.un
+    
+    init(nom: String, prenom: String, ecole: String) {
+        self.ecole = ecole
+        super.init(nom: nom, prenom: prenom)
+    }
+    
+    init(nom: String, prenom: String, ecole: String, filiere: String, niveau: NiveauScolaire = NiveauScolaire.un) {
+        self.ecole = ecole
+        self.filiere = filiere
+        super.init(nom: nom, prenom: prenom)
+    }
+}
+
+
+var eleve1 = Eleve(nom: "Paulson", prenom: "Gilles-Simon", ecole: "My Best School")
+var eleve2 = Eleve(nom: "Jean-Jacques", prenom: "Rousseau", ecole: "Lettre", filiere: "Lettres", niveau: .dix)
+var eleve3 = Eleve(nom: "Calvin", prenom: "Jean", ecole: "College Rousseau", filiere: "Science")
+
+print(eleve1.ecole)
+print(eleve2.ecole)
+print(eleve3.ecole)
+
+// Protocol
+protocol Sportif {
+    func getSportPrincipal() -> String
+    func getAutresSports() -> [String]?
+}
+
+class EmployeSportif: Employe, Sportif {
+    var sport: String
+    var autresSports: [String]?
+    
+    func getSportPrincipal() -> String {
+        return sport
+    }
+    
+    func getAutresSports() -> [String]? {
+        return autresSports
+    }
+    
+    init (nom: String, prenom: String, code: UInt, departement: String, sport: String) {
+        self.sport = sport
+        super.init(nom: nom, prenom: prenom, code: code, departement: departement)
+    }
+    
+    func addSport(sport: String) {
+        
+        
+        if autresSports == nil {
+            autresSports = [String]()
+        }
+        autresSports?.append(contentOf: sports)
+        /*
+        if let _ = autresSports {
+            autresSports?.append(contentsOf: sport)
+        }
+        else {
+            autresSports = [String]()
+            autresSports?.append(sport)
+        }
+        */
+    }
+}
+
+var employeeSportif1 = EmployeSportif(nom: "Belmondo", prenom: "Jean-Paul", code: 1245, department: "Compta", sport: "Basket")
+employeeSportif1.addSports(sports: ["Natation","Ski","Randonnee"])
+
+print ("=================")
+print (employeeSportif1.getSportPrincipal())
+
+for sport in employeeSportif1.getAutresSports() {
+    print (sport)
+}
