@@ -1,4 +1,5 @@
 
+
 class Personne {
     var nom: String
     var prenom: String
@@ -93,7 +94,7 @@ class EmployeSportif: Employe, Sportif {
         if autresSports == nil {
             autresSports = [String]()
         }
-        autresSports?.append(contentOf: sports)
+        autresSports?.append(sport)
         /*
         if let _ = autresSports {
             autresSports?.append(contentsOf: sport)
@@ -106,12 +107,14 @@ class EmployeSportif: Employe, Sportif {
     }
 }
 
-var employeeSportif1 = EmployeSportif(nom: "Belmondo", prenom: "Jean-Paul", code: 1245, department: "Compta", sport: "Basket")
-employeeSportif1.addSports(sports: ["Natation","Ski","Randonnee"])
+var employeeSportif1 = EmployeSportif(nom: "Belmondo", prenom: "Jean-Paul", code: 1245, departement: "Compta", sport: "Basket")
+
+// employeeSportif1.addSport(sport: ["Natation","Ski","Randonnee"])
+employeeSportif1.addSport(sport: "Natation")
 
 print ("=================")
 print (employeeSportif1.getSportPrincipal())
 
-for sport in employeeSportif1.getAutresSports() {
+for sport in employeeSportif1.getAutresSports()! {
     print (sport)
 }
