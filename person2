@@ -81,9 +81,9 @@ class EleveSportif: Eleve, Sportif {
         return autresSports
     }
     
-    init (nom: String, prenom: String, code: UInt, departement: String, sport: String) {
+    init (nom: String, prenom: String, filiere: String, code: UInt, departement: String, sport: String) {
         self.sport = sport
-        super.init(ecole: ecole, filiere: filiere, niveau: niveau, ecole: ecole)
+        super.init(nom: nom, prenom: prenom, ecole: ecole, filiere: filiere)
     }
     
     func addSport(sport: String) {
@@ -133,7 +133,7 @@ class EmployeSportif: Employe, Sportif {
 
 var employeeSportif1 = EmployeSportif(nom: "Belmondo", prenom: "Jean-Paul", code: 1245, departement: "Compta", sport: "Basket")
 
-var sportifs = [Sportif]()
+    var sportifs = [Sportif]()
     sportifs.append(employeSportif1)
     sportifs.append(employeSportif2)
     sportifs.append(employeSportif3)
@@ -163,7 +163,7 @@ for sportif in sportifs {
     if sportif is EleveSportif {
         let unEleveSportif = sportif as! EleveSportif //cast
         // unEleveSportif.
-        sportif.
+        // sportif.
     }
     
     print (sportif.getSportPrincipal(), terminator:" ")
@@ -184,4 +184,5 @@ for sportif in sportifs {
     print("employeSportif1 [Sportif]", "employeSportif2", "employeSportif3")
 
   }
+}
 }
